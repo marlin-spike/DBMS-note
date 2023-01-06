@@ -1,0 +1,327 @@
+practical no
+
+a) Create a table with several attributes and different constarints:
+
+	CREATE TABLE Student (
+	id INT PRIMARY KEY,
+	name VARCHAR(255) NOT NULL,
+	age INT,
+	phone INT UNIQUE,
+	address VARCHAR(255),
+	deptid INT,
+	FOREIGN KEY (deptid) REFERENCES Department(deptid)
+	);
+
+	CREATE TABLE Department (
+	deptid INT PRIMARY KEY,
+	dname VARCHAR(255) NOT NULL,
+	location VARCHAR(255)
+	);
+
+b) Describe the schema of the table:
+
+	DESCRIBE Student;
+	DESCRIBE Department;
+
+c) Add a column BTno in students table:
+
+	ALTER TABLE Student ADD BTno INT;
+
+d) Change the data type of BTno:
+
+	ALTER TABLE Student MODIFY BTno VARCHAR(255);
+
+e) Rename the column phone to phno:
+
+	ALTER TABLE Student CHANGE phone phno INT;
+
+f) Delete the column age:
+
+	ALTER TABLE Student DROP age;
+
+g) Rename the table department as Branch:
+
+	RENAME TABLE Department TO Branch;
+
+h) Delete the table data:
+
+	TRUNCATE TABLE Student;
+	TRUNCATE TABLE Branch;
+
+i) Delete the table schema:
+
+	DROP TABLE Student;
+	DROP TABLE Branch;
+	
+------------------------------------------------------------
+
+
+Practical no 
+
+
+
+1) Create a table with several attributes and different datatypes:
+
+	CREATE TABLE library (
+	enrollment_no INTEGER PRIMARY KEY,
+	name VARCHAR(255),
+	department VARCHAR(255),
+	year INTEGER,
+	section VARCHAR(255),
+	date_of_issue DATE
+	);
+
+1)  Add a column BTno in students table:
+
+	ALTER TABLE library
+	ADD COLUMN BTno INTEGER;
+
+1) Change the data type of BTno:
+
+	ALTER TABLE library
+	ALTER COLUMN BTno VARCHAR(255);
+
+1) Delete the column age:
+
+	ALTER TABLE library
+	DROP COLUMN age;
+
+1) Update table data:
+
+	UPDATE library
+	SET name = 'John', department = 'Computer Science', year = 3, section = 'C', date_of_issue = '2022-01-01'
+	WHERE enrollment_no = 1;
+
+1) Delete the table data:
+
+	DELETE FROM library;
+
+1) Delete the table schema:
+
+	DROP TABLE library;
+	
+------------------------------------------------------
+
+practical no 
+
+a) Make Id of Student a primary key.
+	Alter Table Student Modify Sid int prmary Key;
+
+b) Make the Name and address field as not null.
+	Alter Table Student modify Name Varchar(25) Not Null;
+	Alter Table Student Modify Address varchar(25) Not Null;
+
+c)Impose constraint on BTno such that values are unique.
+	Alter Table Student Modify BTno int unique;
+
+d) Insert default value of age as 20
+	Alter Table Student ADD age int default(20);
+
+e) Insert multiple rows in the table one by one
+	Insert into student values (23, “name”, 23, “Amravati”, 23455, 5);
+
+f) Insert multiple rows using single query.
+	Insert into department values ( 2, ”CSE”, ”building1” ),
+	(3,”electrical”,”building2”) ;
+
+g) Insert some rows skipping values of some attributes.
+	Insert into department (deptid, dname) values (3, “extc”);
+
+h) Display the complete data entered into the tables.
+	Select * from Student;
+
+i) Update student name whose id is 3
+	UPDATE Student set sname=”Amit” where deptid=3;
+
+j)Change address and phone no of student with name XYZ.
+	UPDATE Student SET address=“Rajapeth” Phone=23456789 where
+	sname=”XYZ”;	
+	
+k) Delete the phone no of student 23.
+	UPDATE student SET Phone= NULL where sid=23;
+
+l)Delete the students who belong to Amravati city.
+	DELETE from Student where Address=”AMRAVATI”;
+
+m) Display all students who belong to city Akola.
+	SELECT * from Students where Address=”Akola”;
+
+n) Display the student names with their department names.
+	SELECT sname,Dname
+	FROM Student, Department WHERE
+	Student.deptid= Department.deptid;
+	
+	
+--------------------------------------------------------------------------
+
+practical no 6
+	
+1) Find out the difference between maximum and minimum
+salary of employee.
+	select max(salary)-min(salary) as difference from emp;
+
+2) Display name and date of joining of employee who join in
+month of January.
+	select empname, to_char (dojoin, 'dd-mon-yyyy' ) from emp where
+	to_char (dojoin, 'mon' ) = 'jan';
+
+3) Find out the most experienced employee.
+	SELECT empname FROM employees where DOJ in (SELECT MIN(DOJ)
+	from employees);
+
+4) Display employee name in small letter.
+	select lower(empname),upper(pname) from emp;
+
+5) Calculate experience of each employee and print with employee name.
+	select empname, (Systemdate()- doj) from employee;
+
+6) Display the months between 1 June 2010 & 1 August 2012.
+	select distinct months_between('10/jan/12','01/aug/12') as difference from emp;
+
+7) List all jobs available in employee table
+	Select Distinct post from employees;
+
+8) List the employee name and salary whose salary greater than salary
+of any name.
+    SELECT employee_name, salary FROM Employee WHERE salary > (SELECT salary FROM Employee WHERE employee_name = 'Any Name');
+	
+	
+--------------------------------------------------------------------------
+
+practical no 
+
+1) Display id, post, deptname and dept location of employee using equijoin,
+innerjoin, natural join with USING and ON clause.
+	SELECT eid, post, dname, location from Employee INNER JOIN
+	Department ON Employee.deptid=Department.deptid;
+	SELECT eid, post, dname, location from Employee INNER JOIN
+	Department USING (deptid);
+	SELECT eid, post, dname, location from Employee NATURAL JOIN
+	Department;
+
+2) Display id, name, location having deptid > its dept using non equijoin.
+	SELECT eid, post, dname, location from Employee
+	INNER JOIN Department on
+	Employee.deptid>Department.deptid;
+
+3) Display employee name manager name its department
+with job of manager using self join.
+as
+	SELECT eid, post, dname, location from Employee as E INNER JOIN Employee as M on E.manager=M.eid;
+
+4) Perform Cartesian product of employee and department
+table using cross join.
+	SELECT eid, post, dname, location from Employee
+	CROSS JOIN Department ;
+
+5) Display all the information of employee and department
+using left right and full outer join.
+	SELECT eid, post, dname, location from
+	Employee LEFT JOIN Department on
+	Employee.deptid=Department.deptid;
+	SELECT eid, post, dname, location from Employee
+	RIGHT JOIN Department on
+	Employee.deptid=Department.deptid;
+	SELECT eid, post, dname, location from
+	Employee FULL JOIN Department on
+	Employee.deptid=Department.deptid;
+	
+	
+-----------------------------------------------------------------------------------------------------------
+
+practical no 
+
+
+1) Create a view called manager which stores the information about the entire
+employee who is manager.
+	CREATE VIEW Managerview as select eid, ename , age, post,
+	address,deptid,salary from Employee where manager=NOT NULL;
+
+2) Create a view called Empdata which stores the information about the
+employee and their respective department name, Post and location.
+	CREATE VIEW EMPDATA as
+	select eid,ename, dname, location , post from Employee,
+	department where Employee.deptid=Department.deptid;
+
+3) Display information of all the view.
+	Select * from Managerview;
+	Select * from EMPDATA;
+
+4) Display the manager who works in ‘10’ department.
+SELECT Ename from Managerview where deptid=10;
+
+5) Increment salary of a manager whose age is greater than 50 by
+10%.
+	Update Managerview set salary=salary*1.1 where age>50;
+
+6) Show the updated information in the view and in the logical
+relation.
+	Select * from
+	Manager view ;
+	Select * from
+	Employees;
+
+7) Update a dept name of employee who work in CSE to IT dept and show the result of a view as well as logical relation.
+	Update EMPDATA set dname=”IT” where Dept=”CSE”
+
+8) Drop the view.
+	Drop view Managers;
+	
+	
+-----------------------------------------------------------------------------
+
+
+practical no 9
+
+1) Create tables to store the information of product as productid, name,
+supplier name, unit price.
+	Create table PRODUCT (pid int primary key, pname varchar(20), Supplier
+	varchar(20), Unit Price numeric(3,2));
+
+2) Create another table to store the history of the product similar to product
+table as productid, product name, supplier name, unit price, log date.
+	Create table HISTORY (pid int primary key, pname varchar(20), Supplier
+	varchar(20), Unit Price numeric(3,2), logdate date);
+
+3) Create trigger to update to product history table when
+the price of product is updated in the product table.
+	DELIMITER $$
+	CREATE TRIGGER mytrig BEFORE UPDATE ON Product 
+	FOR EACH ROW 
+	BEGIN 
+	  INSERT INTO HISTORY (pid, pname, supplier, UnitPrice, update_date) 
+	  VALUES (OLD.pid, OLD.pname, OLD.supplier, OLD.UnitPrice, SYSDATE());
+	END $$
+	DELIMITER ;
+
+4) Fire the trigger by executing respective queries.
+	Update product set unitprice = 55.00 where
+	pname=”halkefulke”; Select * from HISTORY;	
+		
+------------------------------------------------------------------------------
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
