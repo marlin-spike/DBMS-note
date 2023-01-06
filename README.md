@@ -4,7 +4,6 @@ if you want a **DBMS** practical *1-10*  download : [DOWNLOAD](https://github.co
 
 <br>
 <br>
-<br>
 
 
 
